@@ -4,13 +4,14 @@ import { supabaseAdmin } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
-webpush.setVapidDetails(
-  'mailto:gypsy.here2help@gmail.com',
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || '',
-  process.env.VAPID_PRIVATE_KEY || '',
-);
-
 export async function POST(req: Request) {
+  if (process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
+    webpush.setVapidDetails(
+      'mailto:gypsy.here2help@gmail.com',
+      process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+      process.env.VAPID_PRIVATE_KEY,
+    );
+  }
   const { title, body, url, sms_to } = await req.json();
   const db = supabaseAdmin();
   const { data: subs } = await db.from('push_subscriptions').select('*');
