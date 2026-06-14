@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shadow Path — FB Marketplace Bookmarklet</title>
+<style>
+body { font-family: system-ui; max-width: 600px; margin: 2rem auto; padding: 1rem; background: #0a0a0b; color: #e6e7ea; }
+a.bm { display: inline-block; padding: 1rem 2rem; background: #f5c518; color: #0a0a0b; text-decoration: none; font-weight: bold; border-radius: 8px; }
+pre { background: #15161a; padding: 1rem; overflow-x: auto; border-radius: 8px; }
+</style>
+</head>
+<body>
+<h1>🌑 Shadow Path — FB Marketplace Capture</h1>
+<p>Drag this button to your mobile browser's bookmarks bar. When viewing any Facebook Marketplace listing, tap it to capture the lead.</p>
+<p><a class="bm" href="javascript:(function(){var t=document.title,d=document.body.innerText.slice(0,2000),u=location.href;fetch('https://shadow-path.vercel.app/api/leads',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({source:'fb',source_url:u,title_text:t,description:d,status:'new'})}).then(()=>alert('🌑 Captured to Shadow Path')).catch(e=>alert('Error: '+e));})();">🌑 Capture to Shadow Path</a></p>
+<h2>Install on Mobile (Android Chrome)</h2>
+<ol>
+<li>Bookmark this page</li>
+<li>Edit the bookmark</li>
+<li>Replace the URL with the JavaScript code below</li>
+<li>Name it "Shadow Path Capture"</li>
+</ol>
+<pre id="code"></pre>
+<script>
+document.getElementById('code').textContent = document.querySelector('a.bm').href;
+</script>
+</body>
+</html>
