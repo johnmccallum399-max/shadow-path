@@ -58,7 +58,6 @@ function formatClock(date: Date) {
 
 export default function TimeCaller() {
   const [enabled, setEnabled] = useState(false);
-  const [clock, setClock] = useState('');
   const audioCtxRef = useRef<AudioContext | null>(null);
   const lastFiredRef = useRef('');
 
@@ -70,13 +69,6 @@ export default function TimeCaller() {
       audioCtxRef.current.resume();
     }
     return audioCtxRef.current;
-  }, []);
-
-  // Clock display — always running
-  useEffect(() => {
-    setClock(formatClock(new Date()));
-    const id = setInterval(() => setClock(formatClock(new Date())), 500);
-    return () => clearInterval(id);
   }, []);
 
   // Announcement ticker — only when enabled
@@ -121,13 +113,12 @@ export default function TimeCaller() {
   return (
     <button
       onClick={toggle}
-      title={enabled ? 'Time Caller active — click to silence' : 'Time Caller off — click to activate'}
-      className={`text-xs px-2 py-1 panel-hi tabular-nums transition-colors ${
-        enabled ? 'text-green-400 border-green-400/40' : 'text-[#8a8d96]'
+      title={enabled ? `Time Caller ON (${formatClock(new Date())}) — click to silence` : `Time Caller OFF — click to activate`}
+      className={`text-lg px-2 py-1 transition-opacity ${
+        enabled ? 'opacity-100' : 'opacity-40'
       }`}
     >
-      <span>{clock || '--:--:-- --'}</span>
-      <span className="ml-1">{enabled ? '🔔' : '🔕'}</span>
+      {enabled ? '🔔' : '🔕'}
     </button>
   );
 }
