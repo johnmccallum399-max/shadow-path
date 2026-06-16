@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
+import TimeCaller from '@/components/TimeCaller';
 
 export const metadata: Metadata = {
   title: 'Shadow Path — Iron Core Operations',
@@ -24,7 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="text-xs uppercase tracking-widest text-[#8a8d96]">Iron Core Ops</div>
               <h1 className="text-lg font-bold">🌑 Shadow Path</h1>
             </div>
-            <Link href="/ref" className="text-xs px-2 py-1 panel-hi">QUICK REF</Link>
+            <div className="flex items-center gap-2">
+              <TimeCaller />
+              <Link href="/ref" className="text-xs px-2 py-1 panel-hi">QUICK REF</Link>
+            </div>
           </div>
         </header>
         <main className="max-w-md mx-auto px-4 py-4">{children}</main>
