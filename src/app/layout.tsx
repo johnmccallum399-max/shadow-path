@@ -27,7 +27,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <div className="flex items-center gap-2">
               <TimeCaller />
-              <a href="/gypsy-montebank.html" className="text-xs px-2 py-1 panel-hi">GYPSY</a>
               <Link href="/ref" className="text-xs px-2 py-1 panel-hi">QUICK REF</Link>
             </div>
           </div>
